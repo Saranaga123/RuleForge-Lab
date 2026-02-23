@@ -55,7 +55,7 @@
   align-items: center; /* Align items vertically */
   padding: 5px 5px; /* Add some padding */
   color: var(--text-color); /* Ensure text is visible */
-  font-size: 12px; /* Adjust size if needed */
+  font-size: 14px; /* Adjust size if needed */
 }
 .hide-class {
   display: none !important;

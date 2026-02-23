@@ -27,7 +27,7 @@ export class SandGateComponent {
     if(theme=='dark-theme'){
       this.isDarkMode = true
     }else{
-      this.isDarkMode = false
+      this.isDarkMode = true
     }
   }
   toggleTheme() {

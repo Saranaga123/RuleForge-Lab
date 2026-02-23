@@ -128,7 +128,7 @@ export class SandBoxComponent {
         },
         (error) => {
           console.error('Error executing rules:', error);
-          this.openErrorModal('Failed to process rules. Check the console for details.');
+          this.openErrorModal('Failed to process rules. Check the Forge console for details.');
           this.spinner.hide();
         }
       );

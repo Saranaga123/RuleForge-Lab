@@ -1,5 +1,5 @@
 <div class="row dropShadowbottom">
-  <p>MATRIX SandBOX</p>
+  <p>RuleForge Lab</p>
   <p>{{Dev}}: <span style="font-weight: bolder;color: #f5550b;cursor: pointer;" (click)="logout()">Logout </span></p>
 </div>
 <hr class="hrgate2">
@@ -49,12 +49,14 @@
               (change)="loadJsonFile($event)"
               #jsonFileInput
               style="display: none" accept=".json"
+              
             />
             <pre class="pre codebg"
-              *ngIf="!jsonString"
-            ><code class="language-json"> {{ jsonString }}</code></pre>
+              *ngIf="!jsonString" 
+            ><code class="language-json"> upload Rules.JSON here...</code></pre>
             <pre class="pre codebg"
               *ngIf="jsonString"
+              
             >
               <br> <code class="language-json"> {{ jsonString }}</code>
             </pre>
@@ -83,7 +85,7 @@
               id="xmlEditor"
               [(ngModel)]="xmlString"
               rows="20"
-              class="pre codebg xml-textarea"spellcheck="false"
+              class="pre codebg xml-textarea"spellcheck="false"placeholder="upload Payload here..."
             ></textarea>
             <!-- <pre class="pre codebg"
               *ngIf="!xmlString"
@@ -100,8 +102,8 @@
             />
           </div>
           <div class="col4" style="height: 40px">
-            <button class="col4"*ngIf="jsonString&&xmlString"(click)="sendDataToRulesEngine()">Run Matrix</button>
-            <button class="col4 tab-disabled"*ngIf="!jsonString||!xmlString">Run Matrix</button>
+            <button class="col4"*ngIf="jsonString&&xmlString"(click)="sendDataToRulesEngine()">Forge</button>
+            <button class="col4 tab-disabled"*ngIf="!jsonString||!xmlString">Forge</button>
 
              
             <div class="col4" style="height: 40px" *ngIf="xmlResult">
