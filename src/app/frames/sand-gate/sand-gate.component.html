@@ -1,0 +1,43 @@
+<div class="login-container">
+  <div class="login-box">
+    <img src="assets/fav4.png" alt="Matrix Decision Manager Logo" class="logo" />
+    <h2>Matrix Sand Box</h2>
+    <form>
+      <!-- <div class="input-group">
+        <label for="username">Username <span style="color:red;font-size: 14px;font-weight: 500;" *ngIf="!unval">*Required</span></label>
+        <input type="text" id="username" placeholder="Enter your username" name="userName" [(ngModel)]="user.userName"(blur)="unChange()"
+        (change)="unChange()"/>
+
+      </div>
+      <div class="input-group">
+        <label for="password">Password <span style="color:red;font-size: 14px;font-weight: 500;" *ngIf="!pwval">*Required</span></label>
+        <input type="password" id="password" placeholder="Enter your password" name="password"  [(ngModel)]="user.password"(blur)="pwChange()"
+        (change)="pwChange()"/>
+      </div> -->
+      <!-- <button type="button" class="login-btn" (click)="onAccessClick()"(click)="doLogin()">Access</button> -->
+      <button type="button" class="login-btn"  (click)="doLogin()">Guest Access</button>
+    </form>
+  </div>
+</div>
+<ngx-spinner *ngIf="isDarkMode"
+  bdColor="rgb(15,23,42)"
+  size="medium"
+  color="#f59e0b"
+  type="fire"
+  [fullScreen]="true"
+></ngx-spinner>
+<ngx-spinner *ngIf="!isDarkMode"
+  bdColor="rgb(255, 255, 255)"
+  size="medium"
+  color="#f59e0b"
+  type="fire"
+  [fullScreen]="true"
+></ngx-spinner>
+
+<hr class="hrgate">
+<div class="row botomLeftCorner">
+  <p>V 1.1.2.  By ASD &nbsp;&nbsp;&nbsp;</p><button (click)="toggleTheme()" class="btntoogle">
+    <i class="fa fa-moon-o" aria-hidden="true"*ngIf="!isDarkMode"></i>
+    <i class="fa fa-sun-o" aria-hidden="true"*ngIf="isDarkMode"></i>
+  </button>
+</div>

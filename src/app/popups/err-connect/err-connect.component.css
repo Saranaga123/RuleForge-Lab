@@ -1,0 +1,53 @@
+:root {
+  --bg-color: #ffffff;
+  --bg-color2: hsl(0, 0%, 100%);
+  --text-color: #0f172a;
+  --hr-color: #0f172a;
+  --hr-shadow-color: #0f172a;
+  --maincontainer-color: #5e5e5e;
+  --buton-bg-color:#353535;
+  --buton-bg-color2:#353535;
+  --buton-hover-color:#414141;
+  --code-bg-color:#444;
+}
+
+.dark-theme {
+  --bg-color: #0f172a; /* Dark Navy */
+  --bg-color2: #101e3c;
+  --text-color: #dadada;
+  --hr-color: #ffffff;
+  --hr-shadow-color: #101e3c;
+  --maincontainer-color: #0a101d;
+  --buton-bg-color:#0f172a;
+  --buton-bg-color2:#101e3c;
+  --buton-hover-color:#101e3c;
+  --code-bg-color:#121c31;
+}
+
+.error-modal {
+  text-align: center;
+  padding: 20px;
+  background: var(--bg-color);
+  border: 2px solid #f59e0b; /* Light Blue Border */
+  box-shadow: 0 0 12px #f59e0b, 0 0 24px #f59e0b; /* Glowing Effect */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+
+h2 {
+  color: #f59e0b;
+}
+
+button {
+  padding: 8px 16px;
+  background-color: var(--buton-bg-color2); /* Amber color from your palette */
+  color: #f59e0b;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 8pt;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background-color: var(--buton-hover-color); /* Slightly darker amber */
+}

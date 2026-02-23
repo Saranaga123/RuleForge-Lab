@@ -1,0 +1,20 @@
+<div class="error-modal">
+  <form (ngSubmit)="Submit()">
+    <div class="input-group">
+      <label for="authCode">
+        2FA Code
+        <span style="color: red; font-size: 14px; font-weight: 500;" *ngIf="faerr">*Required</span>
+      </label>
+      <input
+        type="text"
+        id="authCode"
+        placeholder="Enter your 2FA code"
+        name="authCode"
+        [(ngModel)]="auth2fa"
+      />
+    </div>
+
+    <button mat-button color="primary" type="submit">Submit</button>
+  </form>
+</div>
+

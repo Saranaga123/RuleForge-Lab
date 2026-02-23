@@ -1,0 +1,12 @@
+<div style="background-color:#0a101d; color: #f59e0b">
+  <h2 mat-dialog-title style="background-color:#0a101d; color: #f59e0b">XML Formatting Error</h2>
+  <mat-dialog-content>
+    <p style="background-color:#0a101d; color: #f59e0b">{{ data.errorMessage }}</p>
+    <p style="background-color:#0a101d; color: #f59e0b">{{ data.message }}</p>
+    <p *ngIf="data.details" style="background-color:#0a101d; color: #f59e0b">Details: {{ data.details }}</p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="error-dialog-close-button">OK</button>
+  </mat-dialog-actions>
+</div>
+

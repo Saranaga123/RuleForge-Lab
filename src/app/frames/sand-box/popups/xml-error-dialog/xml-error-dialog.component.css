@@ -1,0 +1,20 @@
+/* Basic styling for the dialog content */
+mat-dialog-content {
+  color: red;
+  font-weight: bold;
+}
+
+/* Styles for the dark blue background and gold text button */
+.error-dialog-close-button {
+  background-color: #0f172a; /* Dark blue */
+  color: #f59e0b;           /* Gold */
+  padding: 10px;
+  border:none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Optional: Add a hover effect for better UX */
+.error-dialog-close-button:hover {
+  background-color: #101e3c; /* Slightly lighter blue on hover */
+}

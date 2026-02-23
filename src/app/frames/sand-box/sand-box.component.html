@@ -1,0 +1,195 @@
+<div class="row dropShadowbottom">
+  <p>MATRIX SandBOX</p>
+  <p>{{Dev}}: <span style="font-weight: bolder;color: #f5550b;cursor: pointer;" (click)="logout()">Logout </span></p>
+</div>
+<hr class="hrgate2">
+
+<div class="wrapper">
+  <div class="container">
+    <div class="card tabs">
+      <input
+        id="tab-1"
+        type="radio"
+        class="tab tab-selector"
+        checked="checked"
+        name="tab"
+      />
+      <label for="tab-1" class="tab tab-primary" (click)="changeTab('run')"
+        >Rules Run
+      </label>
+      <input id="tab-2" type="radio" class="tab tab-selector" name="tab" />
+      <label
+        for="tab-2"
+        class="tab tab-success"
+        (click)="changeTab('audit')"
+        *ngIf="jsonString"
+        >Rules Audit
+      </label>
+      <label class="tab tab-disabled" *ngIf="!jsonString">Rules Audit </label>
+      <div class="tabsShadow"></div>
+      <section class="content">
+        <div
+          class="item2 col12"
+          id="content-1"
+          [ngClass]="{ 'hide-class': audit }"
+          >
+          <div class="col4" style="height: 40px">
+            <button
+              class="col4"
+              (click)="triggerJsonFileInput()"
+              *ngIf="!jsonData"
+            >
+              Load Rules
+            </button>
+            <button class="col4" (click)="reuploadFiles()" *ngIf="jsonData">
+              Reupload Rules
+            </button>
+            <input
+              type="file"
+              (change)="loadJsonFile($event)"
+              #jsonFileInput
+              style="display: none" accept=".json"
+            />
+            <pre class="pre codebg"
+              *ngIf="!jsonString"
+            ><code class="language-json"> {{ jsonString }}</code></pre>
+            <pre class="pre codebg"
+              *ngIf="jsonString"
+            >
+              <br> <code class="language-json"> {{ jsonString }}</code>
+            </pre>
+          </div>
+          <div class="col4" style="height: 40px">
+            <button
+              class="col4"
+              *ngIf="!xmlString"
+              (click)="triggerXmlFileInput()"
+            >
+              Load Payload
+            </button>
+            <button
+              class="col4"
+              *ngIf="xmlString"
+              (click)="triggerXmlFileInput()"
+            >
+              Reupload Payload
+            </button>
+            <!-- <pre class="pre codebg"style="text-align: left !important; color: white !important"
+              *ngIf="xmlString"
+            >
+                {{ xmlString }}
+            </pre> -->
+            <textarea style="width:96%;color:white;border:none"
+              id="xmlEditor"
+              [(ngModel)]="xmlString"
+              rows="20"
+              class="pre codebg xml-textarea"spellcheck="false"
+            ></textarea>
+            <!-- <pre class="pre codebg"
+              *ngIf="!xmlString"
+            >
+            </pre> -->
+            <button (click)="formatXml()" class="btn btn-secondary col4">
+              Validate & Format XML
+            </button>
+            <input
+              type="file"
+              (change)="loadXmlFile($event)"
+              #xmlFileInput
+              style="display: none" accept=".xml"
+            />
+          </div>
+          <div class="col4" style="height: 40px">
+            <button class="col4"*ngIf="jsonString&&xmlString"(click)="sendDataToRulesEngine()">Run Matrix</button>
+            <button class="col4 tab-disabled"*ngIf="!jsonString||!xmlString">Run Matrix</button>
+
+             
+            <div class="col4" style="height: 40px" *ngIf="xmlResult">
+              <textarea style="width:96%;color:white;border:none"
+                id="xmlEditor"
+                [(ngModel)]="xmlResult"
+                rows="60"
+                class="pre codebg xml-textarea"spellcheck="false"
+              ></textarea>
+              
+            </div>
+             
+
+             
+          </div>
+        </div>
+             
+
+        <div
+          class="item2 col12"
+          id="content-2"
+          [ngClass]="{ 'hide-class': run }"
+        >
+          <div class="col4" style="height: 40px">
+            <button class="col4 btndis">Rules</button>
+            <input
+              type="file"
+              (change)="loadJsonFile($event)"
+              #jsonFileInput
+              style="display: none"
+            />
+
+            <pre *ngIf="audit" class="pretag">
+                <code class="language-json">
+                  <br>{{ rules | json }}
+                </code>
+              </pre>
+          </div>
+          <div class="col4" style="height: 40px">
+            <button class="col4 btndis">Functions</button>
+
+            <div *ngIf="audit">
+              <pre class="pretag">
+                <br><br><code class="language-javascript" [innerHTML]="formattedFunctions">
+                </code>
+              </pre>
+            </div>
+
+            <input
+              type="file"
+              (change)="loadXmlFile($event)"
+              #xmlFileInput
+              style="display: none"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<hr class="hrgate">
+<div class="row botomLeftCorner">
+  <p>V 1.1.2. By ASD &nbsp;&nbsp;&nbsp;</p><button (click)="toggleTheme()" class="btntoogle">
+    <i class="fa fa-moon-o" aria-hidden="true"*ngIf="!isDarkMode"></i>
+    <i class="fa fa-sun-o" aria-hidden="true"*ngIf="isDarkMode"></i>
+  </button>
+</div>
+
+<ngx-spinner *ngIf="isDarkMode&&!MatrixRun"
+  bdColor="rgb(15,23,42)"
+  size="medium"
+  color="#f59e0b"
+  type="fire"
+  [fullScreen]="true"
+></ngx-spinner>
+<ngx-spinner *ngIf="!isDarkMode&&!MatrixRun"
+  bdColor="rgb(255, 255, 255)"
+  size="medium"
+  color="#f59e0b"
+  type="fire"
+  [fullScreen]="true"
+></ngx-spinner>
+<ngx-spinner *ngIf="MatrixRun"
+  bdColor="rgb(15,23,42)"
+  size="medium"
+  color="#f59e0b"
+  type="ball-clip-rotate-pulse"
+  [fullScreen]="true"
+></ngx-spinner>
+
