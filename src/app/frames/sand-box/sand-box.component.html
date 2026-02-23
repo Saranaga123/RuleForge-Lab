@@ -42,8 +42,13 @@
               Load Rules
             </button>
             <button class="col4" (click)="reuploadFiles()" *ngIf="jsonData">
-              Reupload Rules
+              <span style="color: white;">
+                {{jsonFileName}}
+              </span><br>
+              Reupload Rules  
+              
             </button>
+            
             <input
               type="file"
               (change)="loadJsonFile($event)"
@@ -54,6 +59,7 @@
             <pre class="pre codebg"
               *ngIf="!jsonString" 
             ><code class="language-json"> upload Rules.JSON here...</code></pre>
+            
             <pre class="pre codebg"
               *ngIf="jsonString"
               
@@ -73,9 +79,12 @@
               class="col4"
               *ngIf="xmlString"
               (click)="triggerXmlFileInput()"
-            >
+            > 
+              <span style="color: white;">
+                {{xmlFileName}}
+              </span><br>
               Reupload Payload
-            </button>
+            </button> 
             <!-- <pre class="pre codebg"style="text-align: left !important; color: white !important"
               *ngIf="xmlString"
             >

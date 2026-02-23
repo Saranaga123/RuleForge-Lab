@@ -97,7 +97,7 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 8pt;
+  font-size: 10pt;
   font-weight: bold;
   transition: background 0.3s ease;
 }
@@ -226,11 +226,21 @@ button:hover {
   background: #242527 !important;
   color: #3c3e41 !important;
 }
+.filenames {
+ padding: 8px 16px;
+  background-color: var(--buton-bg-color);
+  color: #f59e0b;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 8pt;
+  font-weight: bold; 
+}
 .content {
   margin: 0px auto;
   text-align: left;
   line-height: 20px;
-  height: 70vh;
+  height: 75vh;
   border-radius: 5px;
   box-shadow: 0 2px 3px rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 10%);
   display: block;

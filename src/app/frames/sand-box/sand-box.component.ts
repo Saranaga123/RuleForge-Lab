@@ -38,6 +38,7 @@ export class SandBoxComponent {
   audit: boolean = false;
   run: boolean = true;
   rules: any[] = [];
+  xmlFileName: string = ''; 
   Dev:any=""
   functions: { [key: string]: string } = {};
   @ViewChild('jsonFileInput', { static: false }) jsonFileInput!: ElementRef;
@@ -168,6 +169,7 @@ export class SandBoxComponent {
   loadXmlFile(event: any): void {
     const file = event.target.files[0];
     if (file) {
+      this.xmlFileName = file.name;
       this.spinner.show();
       setTimeout(() => {
         const reader = new FileReader();
