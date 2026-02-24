@@ -25,11 +25,10 @@ export class SandGateComponent {
   ngOnInit() {
     localStorage.setItem('app-theme', 'dark-theme');
     let theme = localStorage.getItem('app-theme')
-    if(theme=='dark-theme'){
-      this.isDarkMode = true
-    }else{
-      this.isDarkMode = true
-    }
+    setTimeout(() => { 
+      this.isDarkMode = true  
+    }, 200);
+    
   }
   toggleTheme() {
     this.isDarkMode = !this.isDarkMode;
