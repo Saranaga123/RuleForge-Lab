@@ -23,7 +23,7 @@ export class RunrulesService {
     if (isLocalhost) {
       return this.http.post(this.BASE_URL + '/testRun', payload);
     } else {
-      return this.http.post(this.BASE_URL + '/mdm-rule/testRun', payload);
+      return this.http.post(this.BASE_URL + '/testRun', payload);
     }
   }
   private determineServerURL(): string {
