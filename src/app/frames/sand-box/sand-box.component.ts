@@ -29,9 +29,10 @@ export class SandBoxComponent {
       window.location.hostname === 'localhost' &&
       window.location.port === '4200';
     if (isLocalhost) {
-      return 'https://ms.khutzi.com';
+      return 'https://rule-forge-two.vercel.app';
     } else {
-      return window.location.origin;
+      // return window.location.origin;
+       return 'https://rule-forge-two.vercel.app';
     }
   }
   isDarkMode = false;

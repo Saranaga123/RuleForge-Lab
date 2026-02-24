@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class RunrulesService {
 
-  private apiUrl = 'http://localhost:3000/testRun'; // Update this with your backend URL
+  // private apiUrl = 'http://localhost:3000/testRun';
+  private apiUrl = 'https://rule-forge-two.vercel.app/testRun';
   public userInfo: any;
   private BASE_URL:any;
   private BASE_URL2:any;
@@ -28,9 +29,11 @@ export class RunrulesService {
   private determineServerURL(): string {
     const isLocalhost = window.location.hostname === 'localhost' && window.location.port === '4200';
     if (isLocalhost) {
-      return 'http://localhost:3000';
+      return 'https://rule-forge-two.vercel.app';
+      // return 'http://localhost:3000';
     } else {
-      return window.location.origin;
+      return 'https://rule-forge-two.vercel.app';
+      // return window.location.origin;
     }
   }
 
