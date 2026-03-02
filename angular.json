@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "MatrixSandBox": {
+    "Ruleforge": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "MatrixSandBox:build:production"
+              "browserTarget": "Ruleforge:build:production"
             },
             "development": {
-              "browserTarget": "MatrixSandBox:build:development"
+              "browserTarget": "Ruleforge:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "MatrixSandBox:build"
+            "browserTarget": "Ruleforge:build"
           }
         },
         "test": {

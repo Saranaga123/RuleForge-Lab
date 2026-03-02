@@ -14,16 +14,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'MatrixSandBox'`, () => {
+  it(`should have as title 'Ruleforge'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('MatrixSandBox');
+    expect(app.title).toEqual('Ruleforge');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('MatrixSandBox app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('Ruleforge app is running!');
   });
 });

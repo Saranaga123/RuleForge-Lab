@@ -7,6 +7,6 @@ import { NgxSpinnerService } from 'ngx-spinner';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'MatrixSandBox';
+  title = 'Ruleforge';
 
 }
