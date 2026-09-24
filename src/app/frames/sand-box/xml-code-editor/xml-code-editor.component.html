@@ -1,0 +1,10 @@
+<div class="xml-highlight-wrap">
+  <pre #preEl class="xml-highlight-pre" aria-hidden="true"><code class="language-markup" [innerHTML]="highlightedHtml"></code></pre>
+  <textarea
+    class="xml-highlight-textarea"
+    spellcheck="false"
+    [ngModel]="code"
+    (ngModelChange)="onInput($event)"
+    (scroll)="onScroll($event)"
+  ></textarea>
+</div>

@@ -1,0 +1,116 @@
+.editor-root {
+  text-align: left;
+  font-size: 9pt;
+}
+
+.editor-section-title {
+color: #f59e0b;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  background-color: #0a101d;
+  font-size: large;
+}
+
+.editor-subtitle {
+  color: #cbd5e1;
+  margin: 8px 0 4px;
+}
+
+.rule-card, .function-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 10px;
+}
+
+.rule-card-header, .function-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.rule-index {
+  color: #64748b;
+}
+
+.function-name {
+  color: #7dd3fc;
+  font-family: monospace;
+}
+
+.condition-row, .param-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+  align-items: center;
+}
+
+.editor-input {
+  background: var(--code-bg-color);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 9pt;
+  font-family: inherit;
+}
+
+.fact-input, .param-key-input {
+  flex: 1;
+}
+
+.operator-select {
+  flex: 1.2;
+}
+
+.value-input, .param-value-input {
+  flex: 1;
+}
+
+.function-body-input {
+  width: 100%;
+  box-sizing: border-box;
+  font-family: monospace;
+  resize: vertical;
+}
+
+.editor-btn {
+  padding: 4px 10px;
+  background-color: var(--buton-bg-color);
+  color: #f59e0b;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 8pt;
+  font-weight: bold;
+}
+
+.editor-btn:hover {
+  background-color: var(--buton-hover-color);
+}
+
+.editor-btn-primary {
+  margin-top: 4px;
+}
+
+.editor-btn-danger {
+  color: #f87171;
+  padding: 2px 8px;
+}
+
+.add-function-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.function-name-error {
+  color: #f87171;
+  width: 100%;
+  font-size: 8pt;
+}

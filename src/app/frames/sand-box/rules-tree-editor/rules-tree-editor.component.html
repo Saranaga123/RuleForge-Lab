@@ -1,0 +1,92 @@
+<div class="editor-root">
+  <div class="editor-section">
+    <div class="editor-section-title">rules</div>
+    <div class="rule-card" *ngFor="let rule of rules; let ruleIndex = index">
+      <div class="rule-card-header">
+        <span class="rule-index">rule {{ ruleIndex }}</span>
+        <button type="button" class="editor-btn editor-btn-danger" (click)="deleteRule(ruleIndex)">Delete Rule</button>
+      </div>
+
+      <div class="editor-subtitle">conditions (all)</div>
+      <div class="condition-row" *ngFor="let condition of conditionsOf(rule); let condIndex = index">
+        <input
+          type="text"
+          class="editor-input fact-input"
+          placeholder="fact"
+          [(ngModel)]="condition.fact"
+          (ngModelChange)="onRuleFieldChange()"
+        />
+        <select class="editor-input operator-select" [(ngModel)]="condition.operator" (ngModelChange)="onRuleFieldChange()">
+          <option *ngFor="let op of operators" [value]="op">{{ op }}</option>
+        </select>
+        <input
+          type="text"
+          class="editor-input value-input"
+          placeholder="value"
+          [ngModel]="stringifyValue(condition.value)"
+          (ngModelChange)="onValueInput(condition, $event)"
+        />
+        <button type="button" class="editor-btn editor-btn-danger" (click)="deleteCondition(rule, condIndex)">&times;</button>
+      </div>
+       
+
+      <div class="editor-subtitle">event</div>
+      <div class="condition-row">
+        <input
+          type="text"
+          class="editor-input"
+          placeholder="event type"
+          [(ngModel)]="rule.event.type"
+          (ngModelChange)="onRuleFieldChange()"
+        />
+      </div>
+      <div class="param-row" *ngFor="let row of paramsOf(rule)">
+        <input
+          type="text"
+          class="editor-input param-key-input"
+          placeholder="param name"
+          [(ngModel)]="row.key"
+          (ngModelChange)="onParamRowChange(rule)"
+        />
+        <input
+          type="text"
+          class="editor-input param-value-input"
+          placeholder="param value"
+          [(ngModel)]="row.value"
+          (ngModelChange)="onParamRowChange(rule)"
+        />
+        <button type="button" class="editor-btn editor-btn-danger" (click)="deleteParamRow(rule, row)">&times;</button>
+      </div>
+      <button type="button" class="editor-btn" (click)="addParam(rule)">+ Add Param</button>
+    </div>
+
+    <button type="button" class="editor-btn editor-btn-primary" (click)="addRule()">+ Add Rule</button>
+  </div>
+
+  <div class="editor-section">
+    <div class="editor-section-title">functions</div>
+    <div class="function-card" *ngFor="let name of functionNames()">
+      <div class="function-card-header">
+        <span class="function-name">{{ name }}</span>
+        <button type="button" class="editor-btn editor-btn-danger" (click)="deleteFunction(name)">Delete</button>
+      </div>
+      <textarea
+        class="editor-input function-body-input"
+        rows="20"
+        spellcheck="false"
+        [(ngModel)]="functions[name]"
+        (ngModelChange)="onFunctionBodyChange()"
+      ></textarea>
+    </div>
+
+    <div *ngIf="!addingFunction">
+      <button type="button" class="editor-btn editor-btn-primary" (click)="startAddFunction()">+ Add Function</button>
+    </div>
+    <div class="add-function-row" *ngIf="addingFunction">
+      <input type="text" class="editor-input" placeholder="function name" [(ngModel)]="newFunctionName" />
+      <button type="button" class="editor-btn editor-btn-primary" (click)="confirmAddFunction()">Create</button>
+      <button type="button" class="editor-btn" (click)="cancelAddFunction()">Cancel</button>
+      <div class="function-name-error" *ngIf="functionNameError">{{ functionNameError }}</div>
+    </div>
+  </div>
+</div>

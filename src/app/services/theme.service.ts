@@ -16,11 +16,14 @@ export class ThemeService {
     localStorage.setItem(this.THEME_KEY, themeClass);
   }
 
-  private loadTheme(): void {
+  // No saved preference yet (first visit) defaults to dark.
+  isDark(): boolean {
     const savedTheme = localStorage.getItem(this.THEME_KEY);
-    if (savedTheme) {
-      document.body.className = savedTheme;
-    }
+    return savedTheme === null ? true : savedTheme === 'dark-theme';
+  }
+
+  private loadTheme(): void {
+    document.body.className = this.isDark() ? 'dark-theme' : '';
   }
 }
 

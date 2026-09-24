@@ -9,6 +9,22 @@
   --buton-bg-color2:#353535;
   --buton-hover-color:#414141;
   --code-bg-color:#444;
+  --ngx-json-font-size: 9pt;
+  --ngx-json-key: #f59e0b;
+  --ngx-json-separator: #64748b;
+  --ngx-json-value: #e2e8f0;
+  --ngx-json-string: #7dd3fc;
+  --ngx-json-number: #4ade80;
+  --ngx-json-boolean: #f472b6;
+  --ngx-json-date: #7dd3fc;
+  --ngx-json-array: #cbd5e1;
+  --ngx-json-object: #cbd5e1;
+  --ngx-json-function: #cbd5e1;
+  --ngx-json-null: #94a3b8;
+  --ngx-json-null-bg: transparent;
+  --ngx-json-undefined: #94a3b8;
+  --ngx-json-undefined-key: #94a3b8;
+  --ngx-json-toggler: #f59e0b;
 }
 
 .dark-theme {
@@ -31,3 +47,7 @@ body {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.ngx-json-viewer .segment-type-string > .segment-main > .segment-value {
+  white-space: pre-wrap;
+}

@@ -1,0 +1,85 @@
+.call-graph-root {
+  background: var(--code-bg-color);
+  border-radius: 0.3em;
+  /* min=max, matching .pretag (the function list pane), so both side-by-side
+     panes are always exactly the same fixed height regardless of how many
+     graph layers/functions there are. */
+  min-height: 57vh;
+  max-height: 57vh;
+  overflow: auto;
+}
+
+.empty-state-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #64748b;
+  font-style: italic;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.call-graph-svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+.call-graph-edge {
+  fill: none;
+  stroke: #475569;
+  stroke-width: 1.5;
+}
+
+.call-graph-arrowhead {
+  fill: #475569;
+}
+
+.call-graph-node {
+  cursor: pointer;
+}
+
+.call-graph-node rect {
+  fill: rgba(255, 255, 255, 0.05);
+  stroke: #7dd3fc;
+  stroke-width: 1.5;
+}
+
+.call-graph-node text {
+  fill: #e2e8f0;
+  font-family: monospace;
+  font-size: 10px;
+}
+
+.call-graph-node:hover rect {
+  fill: rgba(125, 211, 252, 0.15);
+}
+
+.call-graph-node-engine {
+  cursor: default;
+}
+
+.call-graph-node-engine rect {
+  fill: rgba(245, 158, 11, 0.12);
+  stroke: #f59e0b;
+}
+
+.call-graph-node-engine text {
+  fill: #f59e0b;
+  font-weight: bold;
+}
+
+.call-graph-node-engine:hover rect {
+  fill: rgba(245, 158, 11, 0.12);
+}
+
+.call-graph-node-orphan rect {
+  stroke: #64748b;
+  stroke-dasharray: 4 3;
+}
+
+.call-graph-node-orphan text {
+  fill: #94a3b8;
+}

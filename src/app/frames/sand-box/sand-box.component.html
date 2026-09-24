@@ -45,27 +45,59 @@
               <span style="color: white;">
                 {{jsonFileName}}
               </span><br>
-              Reupload Rules  
-              
+              Reupload Rules
             </button>
-            
             <input
               type="file"
               (change)="loadJsonFile($event)"
               #jsonFileInput
               style="display: none" accept=".json"
-              
             />
-            <pre class="pre codebg"
-              *ngIf="!jsonString" 
-            ><code class="language-json"> upload Rules.JSON here...</code></pre>
-            
-            <pre class="pre codebg"
-              *ngIf="jsonString"
-              
-            >
-              <br> <code class="language-json"> {{ jsonString }}</code>
-            </pre>
+            <div class="json-toolbar">
+              <button
+                class="mode-btn"
+                [class.mode-btn-active]="rulesViewMode === 'tree'"
+                [disabled]="!jsonData"
+                (click)="setRulesViewMode('tree')"
+              >Tree View</button>
+              <button
+                class="mode-btn"
+                [class.mode-btn-active]="rulesViewMode === 'edit'"
+                [disabled]="!jsonData"
+                (click)="setRulesViewMode('edit')"
+              >Inline Edit</button>
+              <button
+                class="mode-btn"
+                [class.mode-btn-active]="rulesViewMode === 'raw'"
+                [disabled]="!jsonData"
+                (click)="setRulesViewMode('raw')"
+              >Raw Edit</button>
+              <button class="mode-btn" [disabled]="!jsonData" (click)="downloadRulesJson()">Download</button>
+            </div>
+            <div class="pre codebg json-tree-container" *ngIf="jsonData && rulesViewMode === 'tree'">
+              <ngx-json-viewer [json]="displayJsonData" [expanded]="false"></ngx-json-viewer>
+            </div>
+            <div class="pre codebg json-tree-container" *ngIf="jsonData && rulesViewMode === 'edit'">
+              <button class="mode-btn mode-btn-active apply-btn" (click)="applyInlineEdits()">Apply Changes</button>
+              <app-rules-tree-editor
+                [rules]="rules"
+                [functions]="functions"
+                (rulesChange)="onRulesEdited($event)"
+                (functionsChange)="onFunctionsEdited($event)"
+              ></app-rules-tree-editor>
+            </div>
+            <div class="pre codebg json-tree-container" *ngIf="jsonData && rulesViewMode === 'raw'">
+              <button class="mode-btn mode-btn-active apply-btn" (click)="applyRawJsonEdit()">Apply Changes</button>
+              <textarea
+                class="raw-json-textarea"
+                [(ngModel)]="rawJsonEditText"
+                rows="20"
+                spellcheck="false"
+              ></textarea>
+            </div>
+            <div class="pre codebg json-tree-container empty-state-box" *ngIf="!jsonData">
+              No rules loaded yet — click Load Rules to get started.
+            </div>
           </div>
           <div class="col4" style="height: 40px">
             <button
@@ -79,27 +111,21 @@
               class="col4"
               *ngIf="xmlString"
               (click)="triggerXmlFileInput()"
-            > 
+            >
               <span style="color: white;">
                 {{xmlFileName}}
               </span><br>
               Reupload Payload
-            </button> 
-            <!-- <pre class="pre codebg"style="text-align: left !important; color: white !important"
-              *ngIf="xmlString"
-            >
-                {{ xmlString }}
-            </pre> -->
-            <textarea style="width:96%;color:white;border:none"
-              id="xmlEditor"
-              [(ngModel)]="xmlString"
-              rows="20"
-              class="pre codebg xml-textarea"spellcheck="false"placeholder="upload Payload here..."
-            ></textarea>
-            <!-- <pre class="pre codebg"
-              *ngIf="!xmlString"
-            >
-            </pre> -->
+            </button>
+            <div class="json-toolbar">
+              <button class="mode-btn" [disabled]="!xmlString" (click)="downloadXmlPayload()">Download</button>
+            </div>
+            <div class="pre codebg xml-editor-container">
+              <app-xml-code-editor
+                [code]="xmlString"
+                (codeChange)="xmlString = $event"
+              ></app-xml-code-editor>
+            </div>
             <button (click)="formatXml()" class="btn btn-secondary col4">
               Validate & Format XML
             </button>
@@ -111,18 +137,14 @@
             />
           </div>
           <div class="col4" style="height: 40px">
-            <button class="col4"*ngIf="jsonString&&xmlString"(click)="sendDataToRulesEngine()">Forge</button>
-            <button class="col4 tab-disabled"*ngIf="!jsonString||!xmlString">Forge</button>
+            <button class="col4" [disabled]="!jsonString || !xmlString" (click)="sendDataToRulesEngine()">Forge</button>
 
              
-            <div class="col4" style="height: 40px" *ngIf="xmlResult">
-              <textarea style="width:96%;color:white;border:none"
-                id="xmlEditor"
-                [(ngModel)]="xmlResult"
-                rows="60"
-                class="pre codebg xml-textarea"spellcheck="false"
-              ></textarea>
-              
+            <div class="pre codebg json-tree-container" *ngIf="resultData">
+              <ngx-json-viewer [json]="resultData" [expanded]="false"></ngx-json-viewer>
+            </div>
+            <div class="pre codebg json-tree-container empty-state-box" *ngIf="!resultData">
+              No results yet — click Load Rules and Payload then Forge to evaluate.
             </div>
              
 
@@ -137,36 +159,30 @@
           [ngClass]="{ 'hide-class': run }"
         >
           <div class="col4" style="height: 40px">
-            <button class="col4 btndis">Rules</button>
-            <input
-              type="file"
-              (change)="loadJsonFile($event)"
-              #jsonFileInput
-              style="display: none"
-            />
-
-            <pre *ngIf="audit" class="pretag">
-                <code class="language-json">
-                  <br>{{ rules | json }}
-                </code>
-              </pre>
-          </div>
-          <div class="col4" style="height: 40px">
             <button class="col4 btndis">Functions</button>
 
-            <div *ngIf="audit">
-              <pre class="pretag">
-                <br><br><code class="language-javascript" [innerHTML]="formattedFunctions">
-                </code>
-              </pre>
-            </div>
+            <div *ngIf="audit" class="function-audit-layout">
+              <app-function-call-graph
+                class="function-audit-graph-pane"
+                [functions]="functions"
+                (nodeClick)="scrollToFunctionCard($event)"
+              ></app-function-call-graph>
 
-            <input
-              type="file"
-              (change)="loadXmlFile($event)"
-              #xmlFileInput
-              style="display: none"
-            />
+              <div class="pretag function-audit-list function-audit-list-pane">
+                <div class="function-audit-card" *ngFor="let card of functionCards" [id]="'function-card-' + card.name">
+                  <div class="function-audit-header" (click)="toggleFunctionCard(card)">
+                    <span class="function-audit-toggle">{{ card.expanded ? '▾' : '▸' }}</span>
+                    <span class="function-audit-name">{{ card.name }}</span>
+                    <button
+                      type="button"
+                      class="mode-btn function-audit-copy"
+                      (click)="copyFunctionCode(card); $event.stopPropagation()"
+                    >{{ card.copied ? 'Copied!' : (card.copyFailed ? 'Copy failed' : 'Copy') }}</button>
+                  </div>
+                  <pre *ngIf="card.expanded" class="function-audit-body"><code class="language-javascript" [innerHTML]="card.html"></code></pre>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -176,7 +192,7 @@
 
 <hr class="hrgate">
 <div class="row botomLeftCorner">
-  <p>V 1.1.2. By ASD &nbsp;&nbsp;&nbsp;</p><button (click)="toggleTheme()" class="btntoogle">
+  <p>V 1.2.0. By ASD &nbsp;&nbsp;&nbsp;</p><button (click)="toggleTheme()" class="btntoogle">
     <i class="fa fa-moon-o" aria-hidden="true"*ngIf="!isDarkMode"></i>
     <i class="fa fa-sun-o" aria-hidden="true"*ngIf="isDarkMode"></i>
   </button>

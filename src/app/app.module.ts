@@ -12,6 +12,10 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { Auth2faComponent } from './popups/auth2fa/auth2fa.component';
 import { XmlErrorDialogComponent } from './frames/sand-box/popups/xml-error-dialog/xml-error-dialog.component';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { RulesTreeEditorComponent } from './frames/sand-box/rules-tree-editor/rules-tree-editor.component';
+import { XmlCodeEditorComponent } from './frames/sand-box/xml-code-editor/xml-code-editor.component';
+import { FunctionCallGraphComponent } from './frames/sand-box/function-call-graph/function-call-graph.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +23,10 @@ import { XmlErrorDialogComponent } from './frames/sand-box/popups/xml-error-dial
     SandGateComponent,
     ErrConnectComponent,
     Auth2faComponent,
-    XmlErrorDialogComponent
+    XmlErrorDialogComponent,
+    RulesTreeEditorComponent,
+    XmlCodeEditorComponent,
+    FunctionCallGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -29,6 +36,7 @@ import { XmlErrorDialogComponent } from './frames/sand-box/popups/xml-error-dial
     MatDialogModule,
     NgxSpinnerModule,
     HttpClientModule,
+    NgxJsonViewerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

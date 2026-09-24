@@ -23,6 +23,129 @@
   --buton-hover-color:#101e3c;
   --code-bg-color:#121c31;
 }
+
+.json-tree-container {
+  text-align: left;
+  overflow: auto;
+}
+
+.empty-state-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+}
+
+.xml-editor-container {
+  /* .codebg only sets min-height/max-height (57vh), which doesn't count for
+     percentage-height resolution in children even though it visually
+     constrains the box to 57vh -- an explicit height is needed here too or
+     the editor's fill-parent (height:100%) inner elements collapse to zero.
+     overflow/padding use !important because .pre (padding:1em, overflow:auto)
+     is declared later in this file and would otherwise win the specificity
+     tie over this class despite this rule appearing to override it. */
+  position: relative;
+  height: 57vh;
+  overflow: hidden !important;
+  padding: 0 !important;
+}
+
+.json-toolbar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+  margin-top: 6px;
+  flex-wrap: wrap;
+}
+
+.mode-btn {
+  padding: 4px 10px;
+  font-size: 8pt;
+  background-color: var(--buton-bg-color2);
+  color: #64748b;
+}
+
+.mode-btn-active {
+  color: #f59e0b;
+}
+
+.apply-btn {
+  display: block;
+  width: fit-content;
+  margin: 0 0 8px auto;
+}
+
+.function-audit-layout {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.function-audit-graph-pane,
+.function-audit-list-pane {
+  flex: 1;
+  min-width: 0;
+}
+
+.function-audit-list {
+  padding-right: 20px;
+}
+
+.function-audit-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.function-audit-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.function-audit-toggle {
+  color: #f59e0b;
+  width: 12px;
+}
+
+.function-audit-name {
+  flex: 1;
+  color: #7dd3fc;
+  font-family: monospace;
+}
+
+.function-audit-copy {
+  font-size: 8pt;
+  padding: 3px 8px;
+}
+
+.function-audit-body {
+  margin: 0 !important;
+  padding: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: auto;
+  font-size: 9pt;
+}
+
+.raw-json-textarea {
+  width: 96%;
+  height: 90%;
+  min-height: 45vh;
+  background: var(--code-bg-color);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  font-family: monospace;
+  font-size: 9pt;
+  padding: 8px;
+}
 .codebg{
   max-height: 57vh;
   min-height: 57vh;
@@ -55,7 +178,7 @@
   align-items: center; /* Align items vertically */
   padding: 5px 5px; /* Add some padding */
   color: var(--text-color); /* Ensure text is visible */
-  font-size: 14px; /* Adjust size if needed */
+  font-size: 12px; /* Adjust size if needed */
 }
 .hide-class {
   display: none !important;
@@ -97,12 +220,18 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 10pt;
+  font-size: 8pt;
   font-weight: bold;
   transition: background 0.3s ease;
 }
 button:hover {
   background-color: var(--buton-hover-color); /* Slightly darker amber */
+}
+button:disabled,
+button:disabled:hover {
+  cursor: not-allowed;
+  opacity: 0.5;
+  background-color: var(--buton-bg-color);
 }
 .btntoogle{
   padding: 8px 11px !important;
@@ -226,21 +355,11 @@ button:hover {
   background: #242527 !important;
   color: #3c3e41 !important;
 }
-.filenames {
- padding: 8px 16px;
-  background-color: var(--buton-bg-color);
-  color: #f59e0b;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 8pt;
-  font-weight: bold; 
-}
 .content {
   margin: 0px auto;
   text-align: left;
   line-height: 20px;
-  height: 75vh;
+  height: 70vh;
   border-radius: 5px;
   box-shadow: 0 2px 3px rgb(10 10 10 / 10%), 0 0 0 1px rgb(10 10 10 / 10%);
   display: block;

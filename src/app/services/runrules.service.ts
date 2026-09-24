@@ -19,22 +19,19 @@ export class RunrulesService {
     this.BASE_URL2 = this.determineServerURL2();
   }
   executeRules(payload: any): Observable<any> {
-    const isLocalhost = window.location.hostname === 'localhost' && window.location.port === '4200';
-    if (isLocalhost) {
-      return this.http.post(this.BASE_URL + '/testRun', payload);
-    } else {
-      return this.http.post(this.BASE_URL + '/testRun', payload);
-    }
+    return this.http.post(this.BASE_URL + '/testRun', payload);
   }
+  // The desktop app serves this frontend from its embedded backend on a
+  // dynamically picked localhost port, so any localhost origin other than the
+  // ng serve dev server talks to its own origin; everything else (dev server,
+  // hosted web build) uses the hosted Vercel backend.
   private determineServerURL(): string {
-    const isLocalhost = window.location.hostname === 'localhost' && window.location.port === '4200';
-    if (isLocalhost) {
-      return 'https://rule-forge-two.vercel.app';
-      // return 'http://localhost:3000';
-    } else {
-      return 'https://rule-forge-two.vercel.app';
-      // return window.location.origin;
+    const { hostname, port } = window.location;
+    const isLocalHost = hostname === 'localhost' || hostname === '127.0.0.1';
+    if (isLocalHost && port !== '4200') {
+      return window.location.origin;
     }
+    return 'https://rule-forge-two.vercel.app';
   }
 
   private determineServerURL2(): string {

@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.xml-highlight-wrap {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Both layers must share the exact same box model (padding/border/font/
+   line-height/white-space) so their text lines up pixel-for-pixel -- that's
+   what makes the transparent textarea-over-highlighted-pre trick work. */
+.xml-highlight-pre,
+.xml-highlight-textarea {
+  position: absolute;
+  inset: 0;
+  margin: 0 !important;
+  padding: 10px;
+  border: 0;
+  box-sizing: border-box;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 9pt;
+  line-height: 1.5;
+  white-space: pre;
+  text-align: left;
+  overflow: auto;
+  resize: none;
+}
+
+.xml-highlight-pre {
+  pointer-events: none;
+  z-index: 2;
+  color: #e2e8f0;
+}
+
+.xml-highlight-textarea {
+  z-index: 1;
+  color: transparent;
+  background: transparent;
+  caret-color: #f59e0b;
+  outline: none;
+}
